@@ -229,7 +229,7 @@ body {
   }
 
   #menu-x-icon {
-    align-self: flex-start;
+    align-self: center;
     background-image: url(assets/menu-close.svg);
     background-repeat: no-repeat;
     background-position: center;
@@ -245,7 +245,7 @@ body {
     grid-row: 2;
     grid-column: span 2;
     height: 15vh;
-    width: 98%;
+    width: 90%;
     margin-bottom: 13px;
   }
 
@@ -263,6 +263,11 @@ body {
   .header-text{
     grid-column: 2;
   }
+
+  #menu-icon, #menu-x-icon {
+    grid-column: 1;
+  }
+
   .idea-form {
     width: 90%;
   }

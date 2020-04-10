@@ -1,6 +1,6 @@
 var menu = document.querySelector('.menu')
-var mq_medium = window.matchMedia('(max-width: 860px)')
-var mq_small = window.matchMedia('(max-width: 600px)')
+var mqMedium = window.matchMedia('(max-width: 860px)')
+var mqSmall = window.matchMedia('(max-width: 600px)')
 
 window.addEventListener('resize', adaptLayout)
 menu.addEventListener('click', function() {
@@ -11,11 +11,9 @@ menu.addEventListener('click', function() {
 window.onload = adaptLayout();
 
 function adaptLayout() {
-  if (mq_small.matches) {
-    adaptSmallLayout();
-  } else if (mq_medium.matches) {
-    adaptMediumLayout();
-  } else if (!mq_small.matches && !mq_medium.matches) {
+  if (mqSmall.matches || mqMedium.matches) {
+    adaptLayout();
+  } else if (!mqSmall.matches || !mqMedium.matches) {
     orginalLayout();
   }
 }
@@ -25,13 +23,9 @@ function orginalLayout() {
   menu.childNodes[1].classList.add('hidden')  
 }
 
-function adaptMediumLayout() {
+function adaptLayout() {
   menu.childNodes[7].classList.add('hidden')
   menu.childNodes[1].classList.remove('hidden')
-}
-
-function adaptSmallLayout() {
-  menu.childNodes[7].classList.add('hidden')
 }
 
 function showMenu(event) {
@@ -40,10 +34,10 @@ function showMenu(event) {
     menu.childNodes[3].classList.remove('hidden');
     menu.childNodes[7].classList.remove('hidden');
   }
-  changeHeight();
+  showMenuContent();
 }
 
-function changeHeight() {
+function showMenuContent() {
   menu.style.cssText = "grid-template-rows: 8vh 20vh" 
 }
 
