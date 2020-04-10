@@ -1,8 +1,9 @@
-var menu = document.querySelector('.menu')
 var mqMedium = window.matchMedia('(max-width: 860px)')
 var mqSmall = window.matchMedia('(max-width: 600px)')
+var menu = document.querySelector('.menu')
 
 window.addEventListener('resize', adaptLayout)
+
 menu.addEventListener('click', function() {
   showMenu(event),
   hideMenu(event)
@@ -12,7 +13,7 @@ window.onload = adaptLayout();
 
 function adaptLayout() {
   if (mqSmall.matches || mqMedium.matches) {
-    adaptLayout();
+    adaptMobileLayout();
   } else if (!mqSmall.matches || !mqMedium.matches) {
     orginalLayout();
   }
@@ -23,7 +24,7 @@ function orginalLayout() {
   menu.childNodes[1].classList.add('hidden')  
 }
 
-function adaptLayout() {
+function adaptMobileLayout() {
   menu.childNodes[7].classList.add('hidden')
   menu.childNodes[1].classList.remove('hidden')
 }

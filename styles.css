@@ -207,6 +207,7 @@ body {
   }
 
   .header-text {
+    grid-column: 2;
     font-size: 22px;
     align-self: center;
     justify-self: center;
@@ -215,6 +216,10 @@ body {
     margin: 8px
   }
 
+
+  #menu-icon, #menu-x-icon {
+    grid-column: 1;
+  }
 
   #menu-icon {
     align-self: center;
@@ -260,13 +265,8 @@ body {
 
 @media only screen and (max-width: 600px) {
 
-  .header-text{
-    grid-column: 2;
-  }
 
-  #menu-icon, #menu-x-icon {
-    grid-column: 1;
-  }
+
 
   .idea-form {
     width: 90%;
