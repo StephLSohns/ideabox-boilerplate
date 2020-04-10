@@ -14,5 +14,5 @@ function adaptLayout() {
 
 function adaptMediumLayout() {
   var filterIdeaMenu = menu.querySelector('.filter-star-ideas')
-  console.log(filterIdeaMenu)
+  filterIdeaMenu.classList.add("hidden")
 }

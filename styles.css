@@ -24,18 +24,6 @@ body {
 
 /*=== Fonts ===*/
 
-.header-text {
-  color: #EAEAF4;
-  font-family: 'Open Sans';
-  font-weight: bold;
-  padding: 20px;
-}
-
-.body-text {
-  font-family: 'Open Sans' light;
-}
-
-
 /*=== menu section ===*/
 
 .menu {
@@ -44,6 +32,17 @@ body {
   width: 25vw;
   font-family: 'Open Sans';
 }
+
+.header-text {
+  color: #EAEAF4;
+  font-weight: bold;
+  padding: 20px;
+}
+
+button:disabled {
+  display: none;
+}
+
 
 .filter-star-ideas {
   border-bottom: 2px solid #A9AAD2;
@@ -58,8 +57,8 @@ body {
   border:2px #EAEAF4;
   color: #E9E9F3;
   font-weight: 600;
-  font-size: 1.3em;
-  height: 1.5em;
+  font-size: 18px;
+  height: 2em;
   padding: .2em;
   width:94%;
 }
@@ -190,7 +189,7 @@ body {
 
 /*=== media queries ===*/
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 860px) {
   body {
     flex-direction: column;
   }
@@ -200,13 +199,45 @@ body {
     padding: 10px;
   }
 
+  .hidden {
+    display: none;
+  }
+
   .menu {
-    height: 40px;
-    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    height: 3.5em;
     width: 100%;
   }
 
-  .idea-form {
+  menu:target #menu-icon {
+    display: none;
+  }
+
+  #menu-icon {
+    display: inline-block;
+    height: 2.5em;
+  }
+
+  .idea-form-section {
     flex-grow: 1;
+  }
+
+  .idea-form {
+    width: 70%;
+  }
+}
+
+
+
+@media only screen and (max-width: 600px) {
+  .idea-form {
+    width: 90%;
+  }
+
+  .idea-cards-section {
+    display: flex;
+    flex-direction: column;
   }
 }
