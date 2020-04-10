@@ -39,7 +39,10 @@ body {
   padding: 20px;
 }
 
-button:disabled {
+/* button:disabled {
+  display: none;
+} */
+.hidden {
   display: none;
 }
 
@@ -146,14 +149,14 @@ button:disabled {
 }
 
 /*idea box cards section*/
-.idea-box { 
+.idea-box {
   border: 2px solid;
   border-color: #5356A4;
   display: flex;
   flex-direction: column;
   height: 90%;
   justify-content: space-between;
-  width: 1fr;  
+  width: 1fr;
 }
 
 .star-delete-option {
@@ -183,7 +186,9 @@ button:disabled {
 
 .idea-box-add-comment img {
   width: 15%;
+
 }
+
 
 
 
@@ -193,45 +198,71 @@ button:disabled {
   body {
     flex-direction: column;
   }
-
-  .header-text {
-    font-size: 18px;
-    padding: 10px;
-  }
-
-  .hidden {
-    display: none;
-  }
-
+  
   .menu {
-    display: flex;
-    flex-direction: row;
-    align-items: baseline;
-    height: 3.5em;
+    display: grid;
+    grid-template-columns: 10vw 90vw;
+    grid-template-rows: auto;
     width: 100%;
   }
 
-  menu:target #menu-icon {
-    display: none;
+  .header-text {
+    font-size: 22px;
+    align-self: center;
+    justify-self: center;
+    height: 5vh;
+    padding: 3px;
+    margin: 8px
   }
 
+
   #menu-icon {
-    display: inline-block;
-    height: 2.5em;
+    align-self: center;
+    background-image: url(assets/menu.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #1F1F3D;
+    border: 0px;
+    margin-left: 7px;
+    width: 50px;
+    height: 50px;
   }
+
+  #menu-x-icon {
+    align-self: flex-start;
+    background-image: url(assets/menu-close.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #1F1F3D;
+    border: 0px;
+    margin-left: 7px;
+    width: 50px;
+    height: 50px;
+  }
+
+  .filter-star-ideas {
+    border: 0px;
+    grid-row: 2;
+    grid-column: span 2;
+    height: 15vh;
+    width: 98%;
+    margin-bottom: 13px;
+  }
+
 
   .idea-form-section {
     flex-grow: 1;
   }
-
   .idea-form {
     width: 70%;
   }
 }
 
-
-
 @media only screen and (max-width: 600px) {
+
+  .header-text{
+    grid-column: 2;
+  }
   .idea-form {
     width: 90%;
   }
@@ -240,4 +271,17 @@ button:disabled {
     display: flex;
     flex-direction: column;
   }
+
+
+  .idea-box-add-comment img {
+    width: 2.5em;
+    height: 2.5em;
+  }
+
 }
+
+// create gaps for the idea cards when it is moved to mobile screen
+// add border color around the input fields in form section
+// add active star icon and hide it so the regular star icon shows
+// make adjustments to the starred ideas text area 
+>>>>>>> master
