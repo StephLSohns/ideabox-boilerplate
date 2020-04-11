@@ -114,19 +114,61 @@ function validateInputFields() {
 
 function renderIdea () {
   var ideaBox = document.createElement('section');
-  ideaBox.setAttribute('class', 'idea-box');
+  ideaBox.className ='idea-box';
   ideaBox.setAttribute('id', `${idea.id}`);
   ideaCardsSection.appendChild(ideaBox);
-  console.log(ideaBox);
+  debugger
+  createStarDeleteOption(ideaBox);
+  createBodyContent(ideaBox);
 }
+
 //   var ideaBoxMainContent = document.createElement('div')
 //   var commentButton = document.createElement('button')
 // }
 
-// function createStarDeleteOption() {
-//   var starDeleteOption = document.createElement('div')
-//   starDeleteOption.setAttribute('class')
-// }
+function createStarDeleteOption(card) {
+  var starDeleteOption = document.createElement('div');
+  starDeleteOption.className = 'star-delete-option';
+  createStarIcon(starDeleteOption);
+  createDeleteIcon(starDeleteOption);
+  card.appendChild(starDeleteOption);
+}
+
+function createStarIcon(topBar) {
+  var starIcon = document.createElement('button');
+  starIcon.setAttribute('id', 'star-icon');
+  starIcon.disabled = true;
+  topBar.appendChild(starIcon);
+}
+  
+function createDeleteIcon(topBar) {
+  var deleteIcon = document.createElement('button');
+  deleteIcon.setAttribute('id', 'delete-icon');
+  deleteIcon.disabled = true;
+  topBar.appendChild(deleteIcon)
+}
+
+function createBodyContent(card) {
+  var cardBody = document.createElement('div')
+  cardBody.className = "idea-box-main-content";
+  createHeading(cardBody);
+  createBodyText(cardBody);
+  card.appendChild(cardBody);
+}
+
+function createHeading(ideaSummary) {
+  var cardTitle = document.createElement('h4');
+  cardTitle.innerText = idea.title;
+  ideaSummary.appendChild(cardTitle)
+}
+
+function createBodyText(ideaSummary) {
+  var miniCardBody = document.createElement('p');
+  miniCardBody.innerText = idea.body;
+  ideaSummary.appendChild(miniCardBody)
+}
+
+
 
 
 
