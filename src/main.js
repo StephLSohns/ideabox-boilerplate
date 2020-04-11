@@ -1,10 +1,12 @@
 var mqMedium = window.matchMedia('(max-width: 860px)');
 var mqSmall = window.matchMedia('(max-width: 600px)');
+
 var menu = document.querySelector('.menu');
 var ideaFormSection = document.querySelector('.idea-form-section');
 var ideaCardsSection = document.querySelector('.idea-cards-section')
 
 var userIdeas = [];
+var idea;
 
 window.addEventListener('resize', adaptLayout);
 
@@ -14,7 +16,7 @@ menu.addEventListener('click', function() {
 });
 
 ideaFormSection.addEventListener('click', ideaFormButtonHandler)
-// ideaFormSection.addEventListener('keyup', enableButton)
+ideaFormSection.addEventListener('keyup', enableButton)
 
 window.onload = adaptLayout();
 
@@ -91,7 +93,7 @@ function ideaFormButtonHandler(event) {
     //    we were asked to refactor may provide some insigth within the mess of functions. The event chapter 
     //    in JS book is basically built around a validation function and events, also good resource.  
 
-var idea;
+
 
 function validateInputFields() {
   var formInputs = ideaFormSection.getElementsByTagName("input");
@@ -100,7 +102,7 @@ function validateInputFields() {
   } else {
     idea = new Idea (`${formInputs[0].value}`, `${formInputs[1].value}`);
     userIdeas.push(idea);
-    renderIdea();
+    renderIdea(idea);
   }   
   event.preventDefault();
 }  
@@ -110,35 +112,29 @@ function validateInputFields() {
 //  after inputs are validated, it should become a new instance of our Idea object defined in Idea.js
 //  as a new Idea instance, it should become displayed in ou idea-cards section. 
 
-
-
-function renderIdea () {
+function renderIdea (idea) {
   var ideaBox = document.createElement('section');
   ideaBox.className ='idea-box';
   ideaBox.setAttribute('id', `${idea.id}`);
-  ideaCardsSection.appendChild(ideaBox);
-  debugger
   createStarDeleteOption(ideaBox);
   createBodyContent(ideaBox);
+  createCommentButton(ideaBox);
+  ideaCardsSection.appendChild(ideaBox);
 }
 
-//   var ideaBoxMainContent = document.createElement('div')
-//   var commentButton = document.createElement('button')
-// }
-
-function createStarDeleteOption(card) {
+function createStarDeleteOption(ideaBoxParent) {
   var starDeleteOption = document.createElement('div');
   starDeleteOption.className = 'star-delete-option';
   createStarIcon(starDeleteOption);
   createDeleteIcon(starDeleteOption);
-  card.appendChild(starDeleteOption);
+  ideaBoxParent.appendChild(starDeleteOption);
 }
 
-function createStarIcon(topBar) {
+function createStarIcon(topBarParentDiv) {
   var starIcon = document.createElement('button');
   starIcon.setAttribute('id', 'star-icon');
   starIcon.disabled = true;
-  topBar.appendChild(starIcon);
+  topBarParentDiv.appendChild(starIcon);
 }
   
 function createDeleteIcon(topBar) {
@@ -168,6 +164,12 @@ function createBodyText(ideaSummary) {
   ideaSummary.appendChild(miniCardBody)
 }
 
+function createCommentButton(card) {
+  var commentButton = document.createElement('button')
+  commentButton.className = 'idea-box-add-comment';
+  commentButton.innerHTML = '<p>Comment</p>';
+  card.appendChild(commentButton);
+}
 
 
 

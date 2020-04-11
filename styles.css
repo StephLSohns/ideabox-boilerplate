@@ -114,8 +114,10 @@ body {
 
 #title-input-field {
   flex-grow: 1;
-  height: 3.5em;
+  height: 2.3em;
   border-color: #5356A4;
+  font-size: 16px;
+  padding: 3px;
 }
 
 #body-input-field {
@@ -163,15 +165,16 @@ body {
 .idea-box {
   border: 2px solid;
   border-color: #5356A4;
-  display: flex;
-  flex-direction: column;
-  height: 90%;
-  justify-content: space-between;
-  margin-bottom: 1.5em;
+  display: grid;
+  grid-template-rows: 10% 15% 65% 10%;
+  height: 100%;
+  /* justify-content: space-between; */
+  margin-bottom: 10px;
   width: 1fr;
 }
 
 .star-delete-option {
+  grid-row: 1;
   background-color: #1f1f3d;
   display: flex;
   justify-content: space-between;
@@ -183,26 +186,74 @@ body {
   width: 25px;
 }
 
+.star-delete-option button {
+  width: 25px;
+}
+
 #star-btn {
   display: none;
 }
 
-.idea-box-main-content {
-  padding-left: 7px;
-  overflow: scroll;
+#star-icon:disabled {
+  border: 0px;
+  background-color: #1f1f3d;
+  background-image: url(assets/star.svg);
+  background-position: center;
+  background-repeat: no-repeat;
 }
+
+#star-icon {
+  border: 0px;
+  background-color: #1f1f3d;
+  background-image: url(assets/star-active.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#delete-icon:disabled {
+  border: 0px;
+  background-color: #1f1f3d;
+  background-image: url(assets/delete.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#delete-icon {
+  background-image: url(assets/delete-active.svg);
+}
+
+
+.idea-box-main-content h4 {
+  padding-left: 5px;
+  grid-row: 2;
+}
+
+.idea-box-main-content p {
+  grid-row: 3;
+  justify-self: left;
+  padding-left: 5px;
+}
+
 
 .idea-box-add-comment {
-  align-items: center;
-  color: #EAEAF4;
-  display: flex;
   background-color: #5356A4;
-  height: 2em;
+  background-image: url(assets/comment.svg);
+  background-size: 2.5em;
+  background-position: left;
+  background-repeat: no-repeat;
+  color: #EAEAF4;
+  grid-row: 4;
+  width: 100%
 }
 
-.idea-box-add-comment img {
-  width: 15%;
-
+.idea-box-add-comment p {
+  width: 75%;
+  grid-column: 2;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 5px;
+  text-align: left;
+  margin-left: 13%;
 }
 
 
