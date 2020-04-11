@@ -217,7 +217,7 @@ body {
   
   .menu {
     display: grid;
-    grid-template-columns: 10vw 90vw;
+    grid-template-columns: 10vw   ;
     grid-template-rows: auto;
     width: 100%;
   }
