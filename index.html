@@ -6,12 +6,12 @@
   </head>
   <body class="purple-1 body-text">
     <section class="menu purple-4">
-      <img src="assets/menu.svg" alt="menu icon" id="menu-icon" onclick="this.src='assets/menu-close.svg'" onclick="this.src='assets/menu.svg'"/>
-      <img src="assets/menu-close.svg" alt="menu close icon" id="menu-x-icon"/>
+      <button class="hidden" id="menu-icon"></button>
+      <button class="hidden" id="menu-x-icon"></button>
       <h1 class="header-text">IdeaBox</h1>
       <div class="filter-star-ideas">
         <h4 class="filter-star-heading">Filter Starred Ideas</h4>
-        <h2 class="show-ideas-btn" >Show Starred Ideas</h2>
+        <button class="show-ideas-btn">Show Starred Ideas</button>
       </div>
     </section>
     <main class="ideas">
@@ -91,5 +91,6 @@
         </section>
       </section>
     </main>
+    <script src="src/main.js"></script>
   </body>
 </html>

@@ -24,18 +24,6 @@ body {
 
 /*=== Fonts ===*/
 
-.header-text {
-  color: #EAEAF4;
-  font-family: 'Open Sans';
-  font-weight: bold;
-  padding: 20px;
-}
-
-.body-text {
-  font-family: 'Open Sans' light;
-}
-
-
 /*=== menu section ===*/
 
 .menu {
@@ -45,13 +33,19 @@ body {
   font-family: 'Open Sans';
 }
 
-#menu-icon {
+.header-text {
+  color: #EAEAF4;
+  font-weight: bold;
+  padding: 20px;
+}
+
+/* button:disabled {
+  display: none;
+} */
+.hidden {
   display: none;
 }
 
-#menu-x-icon {
-  display: none;
-}
 
 .filter-star-ideas {
   border-bottom: 2px solid #A9AAD2;
@@ -220,62 +214,94 @@ body {
   body {
     flex-direction: column;
   }
+  
+  .menu {
+    display: grid;
+    grid-template-columns: 10vw 90vw;
+    grid-template-rows: auto;
+    width: 100%;
+  }
 
   .header-text {
     font-size: 22px;
-    padding: 6px;
-    margin-right: 30%;
-    margin-bottom: 15px;
-
+    align-self: center;
+    justify-self: center;
+    height: 5vh;
+    padding: 3px;
+    margin: 8px
   }
 
-  .menu {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-    height: 7vh;
-  }
 
   #menu-icon {
-    display: inline;
-    align-self: flex-start;
-    margin-left: 4px;
-    width: 42px;
-    height: 100%;
+    align-self: center;
+    background-image: url(assets/menu.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #1F1F3D;
+    border: 0px;
+    margin-left: 7px;
+    width: 50px;
+    height: 50px;
   }
 
   #menu-x-icon {
+    align-self: center;
+    background-image: url(assets/menu-close.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #1F1F3D;
+    border: 0px;
+    margin-left: 7px;
     width: 42px;
     height: 100%;
   }
 
   .filter-star-ideas {
-    display: none;
+    border: 0px;
+    grid-row: 2;
+    grid-column: span 2;
+    height: 15vh;
+    width: 90%;
+    margin-bottom: 13px;
   }
 
-  .idea-form {
+
+  .idea-form-section {
     flex-grow: 1;
   }
-
-  .idea-box-add-comment img {
-    width: 2.5em;
-    height: 2.5em;
+  .idea-form {
+    width: 70%;
   }
 }
 
 @media only screen and (max-width: 600px) {
+
+  .header-text{
+    grid-column: 2;
+  }
+
+  #menu-icon, #menu-x-icon {
+    grid-column: 1;
+  }
+
   .idea-form {
     width: 90%;
   }
 
   .idea-cards-section {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
   }
+
+
+  .idea-box-add-comment img {
+    width: 2.5em;
+    height: 2.5em;
+  }
+
 }
 
 // create gaps for the idea cards when it is moved to mobile screen
 // add border color around the input fields in form section
 // add active star icon and hide it so the regular star icon shows
-// make adjustments to the starred ideas text area
+// make adjustments to the starred ideas text area 
