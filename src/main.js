@@ -2,6 +2,7 @@ var mqMedium = window.matchMedia('(max-width: 860px)');
 var mqSmall = window.matchMedia('(max-width: 600px)');
 var menu = document.querySelector('.menu');
 var ideaFormSection = document.querySelector('.idea-form-section');
+var ideaCardsSection = document.querySelector('.idea-cards-section')
 
 var userIdeas = [];
 
@@ -67,13 +68,6 @@ function hideMenu (event) {
 
 // Iteration 2 - Adding Ideas
 
-function ideaFormButtonHandler(event) {
-  var ideaFormButtons = ideaFormSection.getElementsByTagName('button'); // may not be neccessary...
-  if (event.target.className === "save-idea-btn") {
-      validateInputFields()
-  } 
-  event.preventDefault();
-}
 
 // As a user,
 // - When I click “Save”,
@@ -82,18 +76,14 @@ function ideaFormButtonHandler(event) {
 //    it has a class name of save-idea-btn
 //    what is the most efficient way to access this button ??????
 
-
-function createIdea() {
-  var formInputs = ideaFormSection.getElementsByTagName("input");
-  if (formInputs[0].value === '' || formInputs[1].value === '') {
-    alert('Please, share your Ideas :) save button enabler function may go here, not sure yet.' ) 
-  } else {
-    var idea = new Idea (formInputs[0].value, formInputs[1].value);
-    userIdeas.push(idea)
+function ideaFormButtonHandler(event) {
+  var ideaFormButtons = ideaFormSection.getElementsByTagName('button'); // may not be neccessary...
+  if (event.target.className === "save-idea-btn") {
+      validateInputFields()
+      // we can add any other functions related to our event here.  
   } 
-  event.preventDefault();
+  // event.preventDefault();
 }
-
 
 // - If I entered information in both the “Title” and “Body” input fields,
 
@@ -101,11 +91,43 @@ function createIdea() {
     //    we were asked to refactor may provide some insigth within the mess of functions. The event chapter 
     //    in JS book is basically built around a validation function and events, also good resource.  
 
+var idea;
+
+function validateInputFields() {
+  var formInputs = ideaFormSection.getElementsByTagName("input");
+  if (formInputs[0].value === '' || formInputs[1].value === '') {
+    alert('Please, share your Ideas :) save button enabler function may go here, not sure yet.' ) 
+  } else {
+    idea = new Idea (`${formInputs[0].value}`, `${formInputs[1].value}`);
+    userIdeas.push(idea);
+    renderIdea();
+  }   
+  event.preventDefault();
+}  
 
 // - I should see a new idea card with the provided title and body appear in the idea list
 
-    //  after inputs are validated, it should become a new instance of our Idea object defined in Idea.js
-    //  as a new Idea instance, it should become displayed in ou idea-cards section. 
+//  after inputs are validated, it should become a new instance of our Idea object defined in Idea.js
+//  as a new Idea instance, it should become displayed in ou idea-cards section. 
+
+
+
+function renderIdea () {
+  var ideaBox = document.createElement('section');
+  ideaBox.setAttribute('class', 'idea-box');
+  ideaBox.setAttribute('id', `${idea.id}`);
+  ideaCardsSection.appendChild(ideaBox);
+  console.log(ideaBox);
+}
+//   var ideaBoxMainContent = document.createElement('div')
+//   var commentButton = document.createElement('button')
+// }
+
+// function createStarDeleteOption() {
+//   var starDeleteOption = document.createElement('div')
+//   starDeleteOption.setAttribute('class')
+// }
+
 
 
 
