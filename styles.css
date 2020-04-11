@@ -46,6 +46,9 @@ body {
   display: none;
 }
 
+.faded {
+  opacity: 0.5;
+}
 
 .filter-star-ideas {
   border-bottom: 2px solid #A9AAD2;
@@ -214,7 +217,7 @@ body {
   body {
     flex-direction: column;
   }
-  
+
   .menu {
     display: grid;
     grid-template-columns: 10vw 90vw;
@@ -304,4 +307,4 @@ body {
 // create gaps for the idea cards when it is moved to mobile screen
 // add border color around the input fields in form section
 // add active star icon and hide it so the regular star icon shows
-// make adjustments to the starred ideas text area 
+// make adjustments to the starred ideas text area
