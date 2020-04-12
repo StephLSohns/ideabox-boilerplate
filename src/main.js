@@ -43,9 +43,11 @@ function showMenu(event) {
     menu.childNodes[1].classList.add('hidden');
     menu.childNodes[3].classList.remove('hidden');
     menu.childNodes[7].classList.remove('hidden');
+    var ideasSection = document.querySelector(".ideas");
+    ideasSection.classList.add('faded');
   }
   showMenuContent();
-};
+}
 
 function showMenuContent() {
   menu.style.cssText = "grid-template-rows: 8vh 20vh";
@@ -55,8 +57,18 @@ function hideMenu (event) {
   if (event.target === menu.childNodes[3]) {
     menu.childNodes[3].classList.add('hidden');
     menu.childNodes[1].classList.remove('hidden');
-  };
-};
+    menu.childNodes[7].classList.add('hidden');
+    var ideasSection = document.querySelector(".ideas");
+    ideasSection.classList.remove('faded');
+  }
+  hideMenuContent();
+}
+
+
+function hideMenuContent () {
+  menu.style.cssText = "grid-template-rows: auto"
+}
+
 
 // add function to the hamburger button
 // display hidden filter star Ideas
@@ -235,3 +247,4 @@ function createCommentButton(card) {
 // - I should NOT see the page reload
 
     //  event.preventDefault() but what event, where to place it, and how to apply it are the big questions. 
+

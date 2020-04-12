@@ -46,6 +46,10 @@ body {
   display: none;
 }
 
+.faded {
+  opacity: 0.5;
+}
+
 
 .filter-star-ideas {
   border-bottom: 2px solid #A9AAD2;
@@ -273,6 +277,13 @@ body {
     width: 100%;
   }
 
+  .menu {
+    display: grid;
+    grid-template-columns: 10vw 90vw;
+    grid-template-rows: auto;
+    width: 100%;
+  }
+
   .header-text {
     grid-column: 2;
     font-size: 22px;
@@ -287,6 +298,7 @@ body {
   #menu-icon, #menu-x-icon {
     grid-column: 1;
   }
+
 
   #menu-icon {
     align-self: center;
@@ -334,6 +346,13 @@ body {
 @media only screen and (max-width: 600px) {
 
 
+  .header-text{
+    grid-column: 2;
+  }
+
+  #menu-icon, #menu-x-icon {
+    grid-column: 1;
+  }
 
 
   .idea-form {
