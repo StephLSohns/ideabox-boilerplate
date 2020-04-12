@@ -1,5 +1,5 @@
 var mqMedium = window.matchMedia('(max-width: 860px)');
-var mqSmall = window.matchMedia('(max-width: 600px)');
+// var mqSmall = window.matchMedia('(max-width: 600px)');
 
 var menu = document.querySelector('.menu');
 var ideaFormSection = document.querySelector('.idea-form-section');
@@ -16,27 +16,34 @@ menu.addEventListener('click', function() {
 });
 
 ideaFormSection.addEventListener('click', ideaFormButtonHandler)
-ideaFormSection.addEventListener('keyup', enableButton)
+// ideaFormSection.addEventListener('keyup', enableButton)
 
 window.onload = adaptLayout();
 
 function adaptLayout() {
-  if (mqSmall.matches || mqMedium.matches) {
-    adaptMobileLayout();
-  } else if (!mqSmall.matches || !mqMedium.matches) {
+  if (!mqMedium.matches) {
     orginalLayout();
-  };
+  } else if (mqMedium.matches && !(menu.childNodes[3].classList.contains('hidden'))) {
+    event.preventDefault();
+  } else if (mqMedium.matches) {
+    adaptMobileLayout();
+  }
 };
 
 function orginalLayout() {
   menu.childNodes[7].classList.remove('hidden');
   menu.childNodes[1].classList.add('hidden');
+  if (!(menu.childNodes[3].classList.contains('hidden'))) {
+    menu.childNodes[3].classList.add('hidden');
+    menu.style.cssText = "grid-template-rows: auto"
+  }
 };
 
 function adaptMobileLayout() {
-  menu.childNodes[7].classList.add('hidden');
-  menu.childNodes[1].classList.remove('hidden');
+    menu.childNodes[7].classList.add('hidden');
+    menu.childNodes[1].classList.remove('hidden');
 };
+
 
 function showMenu(event) {
   if (event.target === menu.childNodes[1]) {
