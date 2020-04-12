@@ -105,14 +105,20 @@ function hideMenuContent () {
 //    what is the most efficient way to access this button ??????
 
 function ideaFormButtonHandler(event) {
-  var ideaFormButtons = ideaFormSection.getElementsByTagName('button'); // may not be neccessary...
   if (event.target.className === "save-idea-btn") {
       validateInputFields()
+      submitIdeaForm();
       // we can add any other functions related to our event here.
   }
   // event.preventDefault();
 }
-
+function submitIdeaForm() {
+  var ideaForm = ideaFormSection.querySelector(".idea-form")
+  if (ideaForm.submit) {
+    ideaForm.reset();
+  saveBtn.disabled = true;
+  }
+}
 // - If I entered information in both the “Title” and “Body” input fields,
 
     // This means some form of input validation, still kind of iffy on this, but the number guess game
