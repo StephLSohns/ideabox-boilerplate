@@ -118,16 +118,23 @@ body {
 
 #title-input-field {
   flex-grow: 1;
+<<<<<<< HEAD
+  height: 2.5em;
+  border-color: #5356A4;
+  font-size: 16px;
+=======
   height: 2.3em;
   border-color: #5356A4;
   font-size: 16px;
   padding: 3px;
+>>>>>>> master
 }
 
 #body-input-field {
   flex-grow: 2;
-  height: 8em;
+  height: 7em;
   border-color: #5356A4;
+  font-size: 16px;
 }
 
 .save-idea-btn {
@@ -139,6 +146,13 @@ body {
   margin: 18px 0px;
   background-color: rgb(40,38,84);
   border-color: #5356A4;
+  cursor: pointer;
+
+}
+
+.save-idea-btn:disabled {
+  background-color: #D0D2D3;
+  cursor: not-allowed;
 }
 
 .search-bar {
@@ -269,7 +283,7 @@ body {
   body {
     flex-direction: column;
   }
-  
+
   .menu {
     display: grid;
     grid-template-columns: 10vw   ;
@@ -372,3 +386,10 @@ body {
 
 }
 
+<<<<<<< HEAD
+// create gaps for the idea cards when it is moved to mobile screen
+// add border color around the input fields in form section
+// add active star icon and hide it so the regular star icon shows
+// make adjustments to the starred ideas text area
+=======
+>>>>>>> master
