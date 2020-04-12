@@ -46,6 +46,10 @@ body {
   display: none;
 }
 
+.faded {
+  opacity: 0.5;
+}
+
 
 .filter-star-ideas {
   border-bottom: 2px solid #A9AAD2;
@@ -122,8 +126,9 @@ body {
 
 #body-input-field {
   flex-grow: 2;
-  height: 8em;
+  height: 7em;
   border-color: #5356A4;
+  font-size: 16px;
 }
 
 .save-idea-btn {
@@ -135,6 +140,13 @@ body {
   margin: 18px 0px;
   background-color: rgb(40,38,84);
   border-color: #5356A4;
+  cursor: pointer;
+
+}
+
+.save-idea-btn:disabled {
+  background-color: #D0D2D3;
+  cursor: not-allowed;
 }
 
 .search-bar {
@@ -265,10 +277,17 @@ body {
   body {
     flex-direction: column;
   }
-  
+
   .menu {
     display: grid;
     grid-template-columns: 10vw   ;
+    grid-template-rows: auto;
+    width: 100%;
+  }
+
+  .menu {
+    display: grid;
+    grid-template-columns: 10vw 90vw;
     grid-template-rows: auto;
     width: 100%;
   }
@@ -287,6 +306,7 @@ body {
   #menu-icon, #menu-x-icon {
     grid-column: 1;
   }
+
 
   #menu-icon {
     align-self: center;
@@ -339,6 +359,13 @@ body {
 @media only screen and (max-width: 600px) {
 
 
+  .header-text{
+    grid-column: 2;
+  }
+
+  #menu-icon, #menu-x-icon {
+    grid-column: 1;
+  }
 
 
   .idea-form {
