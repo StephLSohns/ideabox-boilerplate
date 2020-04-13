@@ -162,7 +162,6 @@ body {
  padding: .5em .2em;
  width: 12%;
  border-color: #5356A4;
- /* border-radius: 2px; */
 }
 
 #search-entry {
@@ -174,13 +173,13 @@ body {
 }
 
 /*idea box cards section*/
+
 .idea-box {
   border: 2px solid;
   border-color: #5356A4;
   display: grid;
   grid-template-rows: 10% 15% 65% 10%;
   height: 100%;
-  /* justify-content: space-between; */
   margin-bottom: 10px;
   width: 1fr;
 }
@@ -206,33 +205,31 @@ body {
   display: none;
 }
 
-#star-icon:disabled {
+#star-icon:disabled,
+#star-icon,
+#delete-icon:disabled,
+#delete-icon {
   border: 0px;
   background-color: #1f1f3d;
-  background-image: url(assets/star.svg);
   background-position: center;
   background-repeat: no-repeat;
+}
+
+#star-icon:disabled {
+background-image: url(assets/star.svg);
 }
 
 #star-icon {
-  border: 0px;
-  background-color: #1f1f3d;
   background-image: url(assets/star-active.svg);
-  background-position: center;
-  background-repeat: no-repeat;
 }
 
 #delete-icon:disabled {
-  border: 0px;
-  background-color: #1f1f3d;
   background-image: url(assets/delete.svg);
-  background-position: center;
-  background-repeat: no-repeat;
 }
 
 #delete-icon {
   background-image: url(assets/delete-active.svg);
-}
+} 
 
 
 .idea-box-main-content h4 {
@@ -305,12 +302,7 @@ body {
 
   #menu-icon, #menu-x-icon {
     grid-column: 1;
-  }
-
-
-  #menu-icon {
     align-self: center;
-    background-image: url(assets/menu.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-color: #1F1F3D;
@@ -320,17 +312,13 @@ body {
     height: 50px;
   }
 
-  #menu-x-icon {
-    align-self: center;
-    background-image: url(assets/menu-close.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-color: #1F1F3D;
-    border: 0px;
-    margin-left: 7px;
-    width: 42px;
-    height: 100%;
 
+  #menu-icon {
+    background-image: url(assets/menu.svg);
+  }
+
+  #menu-x-icon {
+    background-image: url(assets/menu-close.svg);
   }
 
   .filter-star-ideas {
