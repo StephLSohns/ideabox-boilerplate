@@ -205,29 +205,29 @@ body {
   display: none;
 }
 
-#star-icon:disabled,
-#star-icon,
-#delete-icon:disabled,
-#delete-icon {
+.star-icon:disabled,
+.star-icon,
+.delete-icon:disabled,
+.delete-icon {
   border: 0px;
   background-color: #1f1f3d;
   background-position: center;
   background-repeat: no-repeat;
 }
 
-#star-icon:disabled {
+.star-icon {
 background-image: url(assets/star.svg);
 }
 
-#star-icon {
+.star-icon .is-favorite {
   background-image: url(assets/star-active.svg);
 }
 
-#delete-icon:disabled {
+.delete-icon:disabled {
   background-image: url(assets/delete.svg);
 }
 
-#delete-icon {
+.delete-icon {
   background-image: url(assets/delete-active.svg);
 } 
 
