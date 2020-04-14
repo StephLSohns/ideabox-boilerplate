@@ -40,7 +40,10 @@ body {
 }
 
 .faded {
+  background-color: #ffffff;
+  background-color: hsl(0.0%,78%);
   opacity: 0.5;
+
 }
 
 #menu-content {
@@ -74,6 +77,7 @@ body {
   flex: 1;
   flex-direction: column;
   font-family:'Open Sans';
+  height: 100vh;
 }
 
 .idea-form-section {

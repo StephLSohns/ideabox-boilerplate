@@ -20,6 +20,8 @@ function showHideMenu() {
   var closeXIcon = menu.children[1]
   hamburgerButton.classList.toggle('hidden')
   closeXIcon.classList.toggle('hidden')
+  ideasSection.classList.toggle('faded')
+
 }
 
 function enableSaveBtn() {
@@ -59,16 +61,14 @@ function renderIdea(currentIdea) {
   var ideaBox =
   `<section class="idea-box" id=${currentIdea.id}>
     <div class="star-delete-option">
-        <img src="assets/star-active.svg" alt="red star" id="red-star-btn" onclick="this.src='assets/star.svg'" onclick="this.src='assets/star-active.svg'"/>
-        <img src="assets/star.svg" alt="star idea" id="star-btn"/>
-        <img src="assets/delete.svg" alt="delete idea" id="x-delete-btn"/>
-    </div>
+      <button class="star-icon"></button>
+      <button class="delete-icon"></button>
     <div class="idea-box-main-content">
       <h4 class="idea-box-title">${currentIdea.title}</h4>
       <p class="idea-box-body">${currentIdea.body}</p>
     </div>
     <div class="idea-box-add-comment">
-      <h4>Comment</h4>
+      <p>Comment</p>
     </div>
   </section>`;
   ideaCardsSection.insertAdjacentHTML('afterbegin', ideaBox);
@@ -102,12 +102,14 @@ function deleteIdea(boxId) {
   ideaCardsSection.removeChild(boxId)
 }
 
-function favoriteIdea(event, boxId) {
+function getFavoriteIdeaIndex(event, boxId) {
   var ideaIndex = userIdeas.findIndex(function(idea) {
     return idea.id == boxId.id;
   });
-  console.log(ideaIndex);
   var favoriteIdea = userIdeas[ideaIndex]
+  starFavIdea (favoriteIdea);
+}
+function starFavIdea(favoriteIdea) {
   favoriteIdea.isStarred = true;
   event.target.nextSibling.disabled = true;
   changeIcon(favoriteIdea)
