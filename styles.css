@@ -39,23 +39,19 @@ body {
   padding: 20px;
 }
 
-/* button:disabled {
-  display: none;
-} */
-.hidden {
-  display: none;
-}
-
 .faded {
   opacity: 0.5;
 }
 
-
-.filter-star-ideas {
+#menu-content {
   border-bottom: 2px solid #A9AAD2;
   border-top: 2px solid #A9AAD2;
   color: #A9AAD2;
   padding: 10px 20px;
+}
+
+#menu-icon, #menu-x-icon {
+  display: none;
 }
 
 .show-ideas-btn {
@@ -84,7 +80,7 @@ body {
   align-items: center;
   flex-grow: 2;
   display: flex;
-  flex-flow:column wrap;
+  flex-flow: column wrap;
   justify-content: space-around;
   padding-bottom: 2em;
 }
@@ -141,7 +137,6 @@ body {
   background-color: rgb(40,38,84);
   border-color: #5356A4;
   cursor: pointer;
-
 }
 
 .save-idea-btn:disabled {
@@ -154,7 +149,6 @@ body {
   height: 3em;
   margin: 15px 0px;
   width: 60%;
-
 }
 
 #search-icon-btn {
@@ -162,7 +156,6 @@ body {
  padding: .5em .2em;
  width: 12%;
  border-color: #5356A4;
- /* border-radius: 2px; */
 }
 
 #search-entry {
@@ -174,13 +167,13 @@ body {
 }
 
 /*idea box cards section*/
+
 .idea-box {
   border: 2px solid;
   border-color: #5356A4;
   display: grid;
   grid-template-rows: 10% 15% 65% 10%;
   height: 100%;
-  /* justify-content: space-between; */
   margin-bottom: 10px;
   width: 1fr;
 }
@@ -206,34 +199,31 @@ body {
   display: none;
 }
 
-#star-icon:disabled {
+.star-icon:disabled,
+.star-icon,
+.delete-icon:disabled,
+.delete-icon {
   border: 0px;
   background-color: #1f1f3d;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.star-icon {
   background-image: url(assets/star.svg);
-  background-position: center;
-  background-repeat: no-repeat;
 }
 
-#star-icon {
-  border: 0px;
-  background-color: #1f1f3d;
+.star-icon .is-favorite {
   background-image: url(assets/star-active.svg);
-  background-position: center;
-  background-repeat: no-repeat;
 }
 
-#delete-icon:disabled {
-  border: 0px;
-  background-color: #1f1f3d;
+.delete-icon:disabled {
   background-image: url(assets/delete.svg);
-  background-position: center;
-  background-repeat: no-repeat;
 }
 
-#delete-icon {
+.delete-icon {
   background-image: url(assets/delete-active.svg);
 }
-
 
 .idea-box-main-content h4 {
   padding-left: 5px;
@@ -245,7 +235,6 @@ body {
   justify-self: left;
   padding-left: 5px;
 }
-
 
 .idea-box-add-comment {
   background-color: #5356A4;
@@ -261,7 +250,7 @@ body {
 .idea-box-add-comment p {
   width: 75%;
   grid-column: 2;
-  font-size: 8px;
+  font-size: 14px;
   font-weight: 600;
   margin: 5px;
   text-align: left;
@@ -287,24 +276,9 @@ body {
     width: 100%;
   }
 
-  .header-text {
-    grid-column: 2;
-    font-size: 22px;
-    align-self: center;
-    justify-self: center;
-    height: 5vh;
-    padding: 3px;
-    margin: 8px
-  }
-
-  #menu-icon, #menu-x-icon {
+  .menu-icon, .menu-x-icon {
     grid-column: 1;
-  }
-
-
-  #menu-icon {
     align-self: center;
-    background-image: url(assets/menu.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-color: #1F1F3D;
@@ -314,26 +288,42 @@ body {
     height: 50px;
   }
 
-  #menu-x-icon {
-    align-self: center;
-    background-image: url(assets/menu-close.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-color: #1F1F3D;
-    border: 0px;
-    margin-left: 7px;
-    width: 42px;
-    height: 100%;
-
+  .menu-icon {
+    display: inline-block;
+    background-image: url(assets/menu.svg);
   }
 
-  .filter-star-ideas {
+  .menu-x-icon {
+    display: inline-block;
+    background-image: url(assets/menu-close.svg);
+  }
+
+  #menu-content {
+    display: none;
+  }
+
+  #menu-content:target {
+    display: block;
     border: 0px;
     grid-row: 2;
     grid-column: span 2;
     height: 15vh;
     width: 90%;
     margin-bottom: 13px;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .header-text {
+    grid-column: 2;
+    font-size: 22px;
+    align-self: center;
+    justify-self: center;
+    height: 5vh;
+    padding: 3px;
+    margin: 8px;
   }
 
   .show-ideas-btn {
@@ -345,6 +335,7 @@ body {
   .idea-form-section {
     flex-grow: 1;
   }
+
   .idea-form {
     width: 70%;
   }
@@ -356,11 +347,6 @@ body {
   .header-text{
     grid-column: 2;
   }
-
-  #menu-icon, #menu-x-icon {
-    grid-column: 1;
-  }
-
 
   .idea-form {
     width: 90%;
