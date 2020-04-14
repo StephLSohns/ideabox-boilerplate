@@ -7,12 +7,13 @@ var ideaCardsSection = document.querySelector('.idea-cards-section')
 var ideasSection = document.querySelector(".ideas");
 
 var userIdeas = [];
-var idea;
+var currentIdea;
 
 menu.addEventListener('click', showHideMenu);
-ideaFormSection.addEventListener('click', ideaFormButtonHandler)
+ideaFormSection.addEventListener('click', ideaFormButtonHandler);
 ideaFormSection.addEventListener('keyup', enableSaveBtn);
-ideaCardsSection.addEventListener('click', ideaCardsButtonHandler)
+ideaCardsSection.addEventListener('click', ideaCardsButtonHandler);
+
 
 function showHideMenu() {
   var hamburgerButton = menu.children[0]
@@ -42,6 +43,37 @@ function submitIdeaForm() {
   }
 }
 
+function validateInputFields() {
+  var formInputs = ideaFormSection.getElementsByTagName("input");
+  if (formInputs[0].value === '' || formInputs[1].value === '') {
+    alert('Please, share your Ideas :) save button enabler function may go here, not sure yet.' )
+  } else {
+    currentIdea = new Idea (`${formInputs[0].value}`, `${formInputs[1].value}`);
+    userIdeas.push(currentIdea);
+    renderUserIdeas(userIdeas);
+  }
+  event.preventDefault();
+}
+
+function renderIdea(currentIdea) {
+  var ideaBox =
+  `<section class="idea-box" id=${currentIdea.id}>
+    <div class="star-delete-option">
+        <img src="assets/star-active.svg" alt="red star" id="red-star-btn" onclick="this.src='assets/star.svg'" onclick="this.src='assets/star-active.svg'"/>
+        <img src="assets/star.svg" alt="star idea" id="star-btn"/>
+        <img src="assets/delete.svg" alt="delete idea" id="x-delete-btn"/>
+    </div>
+    <div class="idea-box-main-content">
+      <h4 class="idea-box-title">${currentIdea.title}</h4>
+      <p class="idea-box-body">${currentIdea.body}</p>
+    </div>
+    <div class="idea-box-add-comment">
+      <h4>Comment</h4>
+    </div>
+  </section>`;
+  ideaCardsSection.insertAdjacentHTML('afterbegin', ideaBox);
+}
+
 function createIdea() {
   var title = document.forms[0].elements[0].value
   var body = document.forms[0].elements[1].value
@@ -49,65 +81,6 @@ function createIdea() {
   userIdeas.push(idea);
   renderIdea(idea);
   event.preventDefault();
-}
-
-function renderIdea (idea) {
-  var ideaBox = document.createElement('section');
-  ideaBox.className ='idea-box';
-  ideaBox.setAttribute('id', `${idea.id}`);
-  createStarDeleteOption(ideaBox);
-  createBodyContent(ideaBox);
-  createCommentButton(ideaBox);
-  ideaCardsSection.appendChild(ideaBox);
-}
-  
-function createStarDeleteOption(ideaBoxParent) {
-  var starDeleteOption = document.createElement('div');
-  starDeleteOption.className = 'star-delete-option';
-  createStarIcon(starDeleteOption);
-  createDeleteIcon(starDeleteOption);
-  ideaBoxParent.appendChild(starDeleteOption);
-}
-
-function createStarIcon(topBarParentDiv) {
-  var starIcon = document.createElement('button');
-  starIcon.className = 'star-icon';
-  starIcon.disabled = false;
-  topBarParentDiv.appendChild(starIcon);
-}
-
-function createDeleteIcon(topBar) {
-  var deleteIcon = document.createElement('button');
-  deleteIcon.className = 'delete-icon';
-  deleteIcon.disabled = false;
-  topBar.appendChild(deleteIcon)
-}
-
-function createBodyContent(card) {
-  var cardBody = document.createElement('div')
-  cardBody.className = "idea-box-main-content";
-  createHeading(cardBody);
-  createBodyText(cardBody);
-  card.appendChild(cardBody);
-}
-
-function createHeading(ideaSummary) {
-  var cardTitle = document.createElement('h4');
-  cardTitle.innerText = idea.title;
-  ideaSummary.appendChild(cardTitle)
-}
-
-function createBodyText(ideaSummary) {
-  var miniCardBody = document.createElement('p');
-  miniCardBody.innerText = idea.body;
-  ideaSummary.appendChild(miniCardBody)
-}
-
-function createCommentButton(card) {
-  var commentButton = document.createElement('button')
-  commentButton.className = 'idea-box-add-comment';
-  commentButton.innerHTML = '<p>Comment</p>';
-  card.appendChild(commentButton);
 }
 
 function ideaCardsButtonHandler(event) {
@@ -130,7 +103,7 @@ function deleteIdea(boxId) {
 }
 
 function favoriteIdea(event, boxId) {
-  var ideaIndex = userIdeas.findIndex(function(idea) { 
+  var ideaIndex = userIdeas.findIndex(function(idea) {
     return idea.id == boxId.id;
   });
   console.log(ideaIndex);
@@ -142,7 +115,7 @@ function favoriteIdea(event, boxId) {
 
 function changeIcon(favoriteIdea, boxId) {
   if (favoriteIdea.isStarred) {
-  //  favoriteIcon icon is red 
+  //  favoriteIcon icon is red
 //  boxId some child that's the button.className.add = "is-favorite"
 //  same acess key.style.bakcground-img = "img url"
 
@@ -167,16 +140,16 @@ function changeIcon(favoriteIdea, boxId) {
   // - When I click the "Star" button on an idea card,
   // - When the button was a filled in star (favorited),
   // - The button should now be an outline of a star (not favorited)
-  // 
+  //
 
-  
+
   // function checkIfStarred(event) {
   //   if (event.target === #star-icon)
   //   if (this.box.isStarred === true) {
-  //      when we click the star button it should be unfavorited 
+  //      when we click the star button it should be unfavorited
   //      and delete icon should become active
   //   } else if (this.box.isStarred === false) {
-  //    when we click the star button it should be favorited 
+  //    when we click the star button it should be favorited
   //     and delete icon should become un-active
   //   }
 
@@ -185,14 +158,11 @@ function changeIcon(favoriteIdea, boxId) {
   function starIdea(event) {
     console.log(event)
   }
-    
-  
-  
-  
-  
+
+
+
+
+
   // As a user,
   // - When I delete or favorite any card,
   // - I should _not_ see the page reload
-
-
-

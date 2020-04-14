@@ -39,11 +39,9 @@ body {
   padding: 20px;
 }
 
-
 .faded {
   opacity: 0.5;
 }
-
 
 #menu-content {
   border-bottom: 2px solid #A9AAD2;
@@ -82,7 +80,7 @@ body {
   align-items: center;
   flex-grow: 2;
   display: flex;
-  flex-flow:column wrap;
+  flex-flow: column wrap;
   justify-content: space-around;
   padding-bottom: 2em;
 }
@@ -139,7 +137,6 @@ body {
   background-color: rgb(40,38,84);
   border-color: #5356A4;
   cursor: pointer;
-
 }
 
 .save-idea-btn:disabled {
@@ -152,7 +149,6 @@ body {
   height: 3em;
   margin: 15px 0px;
   width: 60%;
-
 }
 
 #search-icon-btn {
@@ -214,7 +210,7 @@ body {
 }
 
 .star-icon {
-background-image: url(assets/star.svg);
+  background-image: url(assets/star.svg);
 }
 
 .star-icon .is-favorite {
@@ -227,8 +223,7 @@ background-image: url(assets/star.svg);
 
 .delete-icon {
   background-image: url(assets/delete-active.svg);
-} 
-
+}
 
 .idea-box-main-content h4 {
   padding-left: 5px;
@@ -240,7 +235,6 @@ background-image: url(assets/star.svg);
   justify-self: left;
   padding-left: 5px;
 }
-
 
 .idea-box-add-comment {
   background-color: #5356A4;
@@ -263,7 +257,9 @@ background-image: url(assets/star.svg);
   margin-left: 13%;
 }
 
-
+.idea-box-add-comment img {
+  height: 1.5em;
+}
 
 
 /*=== media queries ===*/
@@ -292,7 +288,6 @@ background-image: url(assets/star.svg);
     height: 50px;
   }
 
-
   .menu-icon {
     display: inline-block;
     background-image: url(assets/menu.svg);
@@ -302,7 +297,6 @@ background-image: url(assets/star.svg);
     display: inline-block;
     background-image: url(assets/menu-close.svg);
   }
-
 
   #menu-content {
     display: none;
@@ -317,7 +311,7 @@ background-image: url(assets/star.svg);
     width: 90%;
     margin-bottom: 13px;
   }
-  
+
   .hidden {
     display: none;
   }
@@ -332,6 +326,20 @@ background-image: url(assets/star.svg);
     margin: 8px
   }
 
+  .hidden {
+    display: none;
+  }
+
+  .header-text {
+    grid-column: 2;
+    font-size: 22px;
+    align-self: center;
+    justify-self: center;
+    height: 5vh;
+    padding: 3px;
+    margin: 8px;
+  }
+
   .show-ideas-btn {
     height: 35%;
     width: 100%;
@@ -341,6 +349,7 @@ background-image: url(assets/star.svg);
   .idea-form-section {
     flex-grow: 1;
   }
+
   .idea-form {
     width: 70%;
   }
@@ -375,9 +384,8 @@ background-image: url(assets/star.svg);
 
   .idea-box-add-comment p {
     justify-self: left;
-    width: 50%; 
+    width: 50%;
     margin-left: 25px;
     font-size: 16px;
   }
 }
-
