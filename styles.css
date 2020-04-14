@@ -323,6 +323,20 @@ body {
     justify-self: center;
     height: 5vh;
     padding: 3px;
+    margin: 8px
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .header-text {
+    grid-column: 2;
+    font-size: 22px;
+    align-self: center;
+    justify-self: center;
+    height: 5vh;
+    padding: 3px;
     margin: 8px;
   }
 
