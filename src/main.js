@@ -1,6 +1,3 @@
-// var mqMedium = window.matchMedia('(max-width: 860px)');
-// var mqSmall = window.matchMedia('(max-width: 600px)');
-
 var menu = document.querySelector('.menu');
 var ideaFormSection = document.querySelector('.idea-form-section');
 var titleInput = document.getElementById('title-input-field');
@@ -11,74 +8,20 @@ var ideaCardsSection = document.querySelector('.idea-cards-section')
 var userIdeas = [];
 var currentIdea;
 
-// window.addEventListener('resize', adaptLayout);
+menu.addEventListener('click', showHideMenu);
 
-menu.addEventListener('click', function() {
-  showMenu(event),
-  hideMenu(event)
-});
-
-ideaFormSection.addEventListener('click', ideaFormButtonHandler)
+ideaFormSection.addEventListener('click', ideaFormButtonHandler);
 ideaFormSection.addEventListener('keyup', enableSaveBtn);
 
-//
-// window.onload = adaptLayout();
-//
-//
-//
-// function adaptLayout() {
-//   if (!mqMedium.matches) {
-//     orginalLayout();
-//   } else if (mqMedium.matches && !(menu.childNodes[3].classList.contains('hidden'))) {
-//     event.preventDefault();
-//   } else if (mqMedium.matches) {
-//     adaptMobileLayout();
-//   }
-// };
-//
-// function orginalLayout() {
-//   menu.childNodes[7].classList.remove('hidden');
-//   menu.childNodes[1].classList.add('hidden');
-//   if (!(menu.childNodes[3].classList.contains('hidden'))) {
-//     menu.childNodes[3].classList.add('hidden');
-//     menu.style.cssText = "grid-template-rows: auto"
-//   }
-// };
-//
-// function adaptMobileLayout() {
-//     menu.childNodes[7].classList.add('hidden');
-//     menu.childNodes[1].classList.remove('hidden');
-// };
+ideaCardsSection.addEventListener('click', ideaCardsButtonHandler);
 
-
-function showMenu(event) {
-  if (event.target === menu.childNodes[1]) {
-    menu.childNodes[1].classList.add('hidden');
-    menu.childNodes[3].classList.remove('hidden');
-    menu.childNodes[7].classList.remove('hidden');
-    var ideasSection = document.querySelector(".ideas");
-    ideasSection.classList.add('faded');
-  }
-  showMenuContent();
+function showHideMenu() {
+  var hamburgerButton = menu.children[0]
+  var closeXIcon = menu.children[1]
+  hamburgerButton.classList.toggle('hidden')
+  closeXIcon.classList.toggle('hidden')
 }
 
-function showMenuContent() {
-  menu.style.cssText = "grid-template-rows: 8vh 20vh";
-};
-
-function hideMenu (event) {
-  if (event.target === menu.childNodes[3]) {
-    menu.childNodes[3].classList.add('hidden');
-    menu.childNodes[1].classList.remove('hidden');
-    menu.childNodes[7].classList.add('hidden');
-    var ideasSection = document.querySelector(".ideas");
-    ideasSection.classList.remove('faded');
-  }
-  hideMenuContent();
-}
-// by accessing the body and title input variables have value I want to tell
-// the button to enable when both of those input fields have text in them
-// if either one of them is empty the save button remains disable
 function enableSaveBtn() {
   if (titleInput.value !== '' && bodyInput.value !== '') {
     saveBtn.disabled = false;
@@ -86,9 +29,9 @@ function enableSaveBtn() {
 }
 
 
-function hideMenuContent () {
-  menu.style.cssText = "grid-template-rows: auto"
-}
+// function hideMenuContent () {
+//   menu.style.cssText = "grid-template-rows: auto"
+// }
 
 // Iteration 2 - Adding Ideas
 
@@ -122,13 +65,14 @@ function validateInputFields() {
   } else {
     currentIdea = new Idea (`${formInputs[0].value}`, `${formInputs[1].value}`);
     userIdeas.push(currentIdea);
-    renderIdea();
+    renderUserIdeas(userIdeas);
   }
   event.preventDefault();
 }
 
-function renderIdea () {
-  var ideaBox = `<section class="idea-box" id=${currentIdea.id}>
+function renderIdea(currentIdea) {
+  var ideaBox =
+  `<section class="idea-box" id=${currentIdea.id}>
     <div class="star-delete-option">
         <img src="assets/star-active.svg" alt="red star" id="red-star-btn" onclick="this.src='assets/star.svg'" onclick="this.src='assets/star-active.svg'"/>
         <img src="assets/star.svg" alt="star idea" id="star-btn"/>
@@ -144,6 +88,8 @@ function renderIdea () {
   </section>`;
   ideaCardsSection.insertAdjacentHTML('afterbegin', ideaBox);
 }
+
+
 
 
 
