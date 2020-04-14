@@ -7,13 +7,13 @@
   </head>
   <body class="purple-1 body-text">
     <section class="menu purple-4">
-      <button class="hidden" id="menu-icon"></button>
-      <button class="hidden" id="menu-x-icon"></button>
-      <h1 class="header-text">IdeaBox</h1>
-      <div class="filter-star-ideas">
-        <h4 class="filter-star-heading">Filter Starred Ideas</h4>
-        <button class="show-ideas-btn">Show Starred Ideas</button>
-      </div>
+      <a href="#menu-content" class="menu-icon"></a>
+      <a href="#" class="menu-x-icon hidden"></a>
+        <h1 class="header-text">IdeaBox</h1>
+        <div id="menu-content">
+          <h4 class="filter-star-heading">Filter Starred Ideas</h4>
+          <button class="show-ideas-btn">Show Starred Ideas</button>
+        </div>
     </section>
     <main class="ideas">
       <section class="idea-form-section purple-2">
@@ -30,7 +30,7 @@
         </div>
       </section>
       <section class="idea-cards-section">
-        <section class="idea-box">
+        <section class="idea-box" id="this.id that's crucial">
           <div class="star-delete-option">
               <img src="assets/star-active.svg" alt="red star" id="red-star-btn" onclick="this.src='assets/star.svg'" onclick="this.src='assets/star-active.svg'"/>
               <img src="assets/star.svg" alt="star idea" id="star-btn"/>
