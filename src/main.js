@@ -1,4 +1,4 @@
-var mqMedium = window.matchMedia('(max-width: 860px)');
+// var mqMedium = window.matchMedia('(max-width: 860px)');
 // var mqSmall = window.matchMedia('(max-width: 600px)');
 
 var menu = document.querySelector('.menu');
@@ -9,9 +9,9 @@ var saveBtn = document.getElementById('save-btn-id');
 var ideaCardsSection = document.querySelector('.idea-cards-section')
 
 var userIdeas = [];
-var idea;
+var currentIdea;
 
-window.addEventListener('resize', adaptLayout);
+// window.addEventListener('resize', adaptLayout);
 
 menu.addEventListener('click', function() {
   showMenu(event),
@@ -21,34 +21,34 @@ menu.addEventListener('click', function() {
 ideaFormSection.addEventListener('click', ideaFormButtonHandler)
 ideaFormSection.addEventListener('keyup', enableSaveBtn);
 
-
-window.onload = adaptLayout();
-
-
-
-function adaptLayout() {
-  if (!mqMedium.matches) {
-    orginalLayout();
-  } else if (mqMedium.matches && !(menu.childNodes[3].classList.contains('hidden'))) {
-    event.preventDefault();
-  } else if (mqMedium.matches) {
-    adaptMobileLayout();
-  }
-};
-
-function orginalLayout() {
-  menu.childNodes[7].classList.remove('hidden');
-  menu.childNodes[1].classList.add('hidden');
-  if (!(menu.childNodes[3].classList.contains('hidden'))) {
-    menu.childNodes[3].classList.add('hidden');
-    menu.style.cssText = "grid-template-rows: auto"
-  }
-};
-
-function adaptMobileLayout() {
-    menu.childNodes[7].classList.add('hidden');
-    menu.childNodes[1].classList.remove('hidden');
-};
+//
+// window.onload = adaptLayout();
+//
+//
+//
+// function adaptLayout() {
+//   if (!mqMedium.matches) {
+//     orginalLayout();
+//   } else if (mqMedium.matches && !(menu.childNodes[3].classList.contains('hidden'))) {
+//     event.preventDefault();
+//   } else if (mqMedium.matches) {
+//     adaptMobileLayout();
+//   }
+// };
+//
+// function orginalLayout() {
+//   menu.childNodes[7].classList.remove('hidden');
+//   menu.childNodes[1].classList.add('hidden');
+//   if (!(menu.childNodes[3].classList.contains('hidden'))) {
+//     menu.childNodes[3].classList.add('hidden');
+//     menu.style.cssText = "grid-template-rows: auto"
+//   }
+// };
+//
+// function adaptMobileLayout() {
+//     menu.childNodes[7].classList.add('hidden');
+//     menu.childNodes[1].classList.remove('hidden');
+// };
 
 
 function showMenu(event) {
@@ -90,17 +90,6 @@ function hideMenuContent () {
   menu.style.cssText = "grid-template-rows: auto"
 }
 
-
-// add function to the hamburger button
-// display hidden filter star Ideas
-// 1. add addEventListener to querySelector for 'menu'
-// 2. click event on hamburger btn should display the filter star idea section
-// 3. it should also display x icon and hide hamburger button
-// 4. the main body contents should fade/contrast or become opaque (pg.254 in css book)
-// 5. when we click on the x the filter star idea section should hide
-// 6. after the idea section is hidden the hamburger btn should come back to the display
-
-
 // Iteration 2 - Adding Ideas
 
 
@@ -115,7 +104,6 @@ function ideaFormButtonHandler(event) {
   if (event.target.className === "save-idea-btn") {
       validateInputFields()
       submitIdeaForm();
-      // we can add any other functions related to our event here.
   }
   // event.preventDefault();
 }
@@ -126,88 +114,35 @@ function submitIdeaForm() {
   saveBtn.disabled = true;
   }
 }
-// - If I entered information in both the “Title” and “Body” input fields,
-
-    // This means some form of input validation, still kind of iffy on this, but the number guess game
-    //    we were asked to refactor may provide some insigth within the mess of functions. The event chapter
-    //    in JS book is basically built around a validation function and events, also good resource.
-
-
 
 function validateInputFields() {
   var formInputs = ideaFormSection.getElementsByTagName("input");
   if (formInputs[0].value === '' || formInputs[1].value === '') {
     alert('Please, share your Ideas :) save button enabler function may go here, not sure yet.' )
   } else {
-    idea = new Idea (`${formInputs[0].value}`, `${formInputs[1].value}`);
-    userIdeas.push(idea);
-    renderIdea(idea);
+    currentIdea = new Idea (`${formInputs[0].value}`, `${formInputs[1].value}`);
+    userIdeas.push(currentIdea);
+    renderIdea();
   }
   event.preventDefault();
 }
 
-// - I should see a new idea card with the provided title and body appear in the idea list
-
-//  after inputs are validated, it should become a new instance of our Idea object defined in Idea.js
-//  as a new Idea instance, it should become displayed in ou idea-cards section.
-
-function renderIdea (idea) {
-  var ideaBox = document.createElement('section');
-  ideaBox.className ='idea-box';
-  ideaBox.setAttribute('id', `${idea.id}`);
-  createStarDeleteOption(ideaBox);
-  createBodyContent(ideaBox);
-  createCommentButton(ideaBox);
-  ideaCardsSection.appendChild(ideaBox);
-}
-
-function createStarDeleteOption(ideaBoxParent) {
-  var starDeleteOption = document.createElement('div');
-  starDeleteOption.className = 'star-delete-option';
-  createStarIcon(starDeleteOption);
-  createDeleteIcon(starDeleteOption);
-  ideaBoxParent.appendChild(starDeleteOption);
-}
-
-function createStarIcon(topBarParentDiv) {
-  var starIcon = document.createElement('button');
-  starIcon.setAttribute('id', 'star-icon');
-  starIcon.disabled = true;
-  topBarParentDiv.appendChild(starIcon);
-}
-
-function createDeleteIcon(topBar) {
-  var deleteIcon = document.createElement('button');
-  deleteIcon.setAttribute('id', 'delete-icon');
-  deleteIcon.disabled = true;
-  topBar.appendChild(deleteIcon)
-}
-
-function createBodyContent(card) {
-  var cardBody = document.createElement('div')
-  cardBody.className = "idea-box-main-content";
-  createHeading(cardBody);
-  createBodyText(cardBody);
-  card.appendChild(cardBody);
-}
-
-function createHeading(ideaSummary) {
-  var cardTitle = document.createElement('h4');
-  cardTitle.innerText = idea.title;
-  ideaSummary.appendChild(cardTitle)
-}
-
-function createBodyText(ideaSummary) {
-  var miniCardBody = document.createElement('p');
-  miniCardBody.innerText = idea.body;
-  ideaSummary.appendChild(miniCardBody)
-}
-
-function createCommentButton(card) {
-  var commentButton = document.createElement('button')
-  commentButton.className = 'idea-box-add-comment';
-  commentButton.innerHTML = '<p>Comment</p>';
-  card.appendChild(commentButton);
+function renderIdea () {
+  var ideaBox = `<section class="idea-box" id=${currentIdea.id}>
+    <div class="star-delete-option">
+        <img src="assets/star-active.svg" alt="red star" id="red-star-btn" onclick="this.src='assets/star.svg'" onclick="this.src='assets/star-active.svg'"/>
+        <img src="assets/star.svg" alt="star idea" id="star-btn"/>
+        <img src="assets/delete.svg" alt="delete idea" id="x-delete-btn"/>
+    </div>
+    <div class="idea-box-main-content">
+      <h4 class="idea-box-title">${currentIdea.title}</h4>
+      <p class="idea-box-body">${currentIdea.body}</p>
+    </div>
+    <div class="idea-box-add-comment">
+      <h4>Comment</h4>
+    </div>
+  </section>`;
+  ideaCardsSection.insertAdjacentHTML('afterbegin', ideaBox);
 }
 
 
