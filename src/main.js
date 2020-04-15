@@ -45,24 +45,13 @@ function submitIdeaForm() {
   }
 }
 
-function validateInputFields() {
-  var formInputs = ideaFormSection.getElementsByTagName("input");
-  if (formInputs[0].value === '' || formInputs[1].value === '') {
-    alert('Please, share your Ideas :) save button enabler function may go here, not sure yet.' )
-  } else {
-    currentIdea = new Idea (`${formInputs[0].value}`, `${formInputs[1].value}`);
-    userIdeas.push(currentIdea);
-    renderUserIdeas(userIdeas);
-  }
-  event.preventDefault();
-}
-
 function renderIdea(currentIdea) {
   var ideaBox =
   `<section class="idea-box" id=${currentIdea.id}>
     <div class="star-delete-option">
       <button class="star-icon"></button>
       <button class="delete-icon"></button>
+    </div>
     <div class="idea-box-main-content">
       <h4>${currentIdea.title}</h4>
       <p>${currentIdea.body}</p>
@@ -84,83 +73,48 @@ function createIdea() {
 }
 
 function ideaCardsButtonHandler(event) {
-  console.log(event);
-  var boxId = document.getElementById(event.path[2].id)
-  console.log(boxId);
+  var chosenIdeaCard = document.getElementById(event.path[2].id)
   if (event.target.className === 'star-icon') {
-    getFavoriteIdeaIndex(event, boxId);
+    getFavoriteIdeaIndex(chosenIdeaCard);
   } else if (event.target.className === 'delete-icon') {
-    deleteIdea(boxId);
+    deleteIdea(chosenIdeaCard);
   }
 }
 
-function deleteIdea(boxId) {
+function deleteIdea(chosenIdeaCard) {
   var removeIdea = userIdeas.filter(function(idea) {
-    return idea.id != boxId.id
+    return idea.id != chosenIdeaCard.id
   })
   userIdeas = removeIdea
-  ideaCardsSection.removeChild(boxId)
+  ideaCardsSection.removeChild(chosenIdeaCard)
 }
 
-function getFavoriteIdeaIndex(event, boxId) {
+function getFavoriteIdeaIndex(chosenIdeaCard) {
   var ideaIndex = userIdeas.findIndex(function(idea) {
-    return idea.id == boxId.id;
+    return idea.id == chosenIdeaCard.id;
   });
   var favoriteIdea = userIdeas[ideaIndex]
-  delegateSaveIdea (favoriteIdea);
+   updateIdea(favoriteIdea, chosenIdeaCard);
 }
-function delegateSaveIdea(favoriteIdea) {
-  if(favoriteIdea.isStarred){
-    unstarFavIdea(favoriteIdea)
+
+ function updateIdea(favoriteIdea, chosenIdeaCard) {
+   var starIcon = chosenIdeaCard.children[0].children[0]
+   var deleteXIcon = chosenIdeaCard.children[0].children[1]
+   if(favoriteIdea.isStarred) {
+    makeNotFavIdea(favoriteIdea, starIcon, deleteXIcon)
   } else{
-    starFavIdea(favoriteIdea)
+    makeFavIdea(favoriteIdea, starIcon, deleteXIcon);
   }
 }
-function starFavIdea(favoriteIdea) {
+
+function makeNotFavIdea(favoriteIdea, starIcon, deleteXIcon) {
+  favoriteIdea.isStarred = false;
+  starIcon.style.cssText = "background-image: url(assets/star.svg);"
+  deleteXIcon.disabled = false;
+}
+
+function makeFavIdea(favoriteIdea, starIcon, deleteXIcon) {
   favoriteIdea.isStarred = true;
-  event.target.nextSibling.disabled = true;
-  event.target.classList.add('is-favorite')
+  starIcon.style.cssText = "background-image: url(assets/star-active.svg);"
+  deleteXIcon.disabled = true;
 }
-
-
-
-
-
-  // ### Iteration 3 - Favoriting & Deleting Ideas
-  // As a user,
-  // - When I click the "Delete" button on an idea card,
-  // - The card should be permanently removed from my view
-  // As a user,
-  // - When I click the "Star" button on an idea card,
-  // - When the button was an outline of a star (not favorited),
-  // - The button should now be a filled in star (favorited)
-  // As a user,
-  // - When I click the "Star" button on an idea card,
-  // - When the button was a filled in star (favorited),
-  // - The button should now be an outline of a star (not favorited)
-  //
-
-
-  // function checkIfStarred(event) {
-  //   if (event.target === #star-icon)
-  //   if (this.box.isStarred === true) {
-  //      when we click the star button it should be unfavorited
-  //      and delete icon should become active
-  //   } else if (this.box.isStarred === false) {
-  //    when we click the star button it should be favorited
-  //     and delete icon should become un-active
-  //   }
-
-  // (ideabox.isStarred) ? unfavoritefunction : favoriteFunction
-
-  function starIdea(event) {
-    console.log(event)
-  }
-
-
-
-
-
-  // As a user,
-  // - When I delete or favorite any card,
-  // - I should _not_ see the page reload

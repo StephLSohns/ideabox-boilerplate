@@ -214,7 +214,7 @@ body {
   background-image: url(assets/star.svg);
 }
 
-.star-icon .is-favorite {
+.is-favorite {
   background-image: url(assets/star-active.svg);
 }
 
