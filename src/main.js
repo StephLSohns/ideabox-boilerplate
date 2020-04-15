@@ -21,7 +21,7 @@ function showHideMenu() {
   hamburgerButton.classList.toggle('hidden')
   closeXIcon.classList.toggle('hidden')
   ideasSection.classList.toggle('faded')
-
+  ideaFormSection.classList.toggle('faded')
 }
 
 function enableSaveBtn() {
@@ -64,12 +64,12 @@ function renderIdea(currentIdea) {
       <button class="star-icon"></button>
       <button class="delete-icon"></button>
     <div class="idea-box-main-content">
-      <h4 class="idea-box-title">${currentIdea.title}</h4>
-      <p class="idea-box-body">${currentIdea.body}</p>
+      <h4>${currentIdea.title}</h4>
+      <p>${currentIdea.body}</p>
     </div>
-    <div class="idea-box-add-comment">
+    <button class="idea-box-add-comment">
       <p>Comment</p>
-    </div>
+    </button>
   </section>`;
   ideaCardsSection.insertAdjacentHTML('afterbegin', ideaBox);
 }
@@ -88,7 +88,7 @@ function ideaCardsButtonHandler(event) {
   var boxId = document.getElementById(event.path[2].id)
   console.log(boxId);
   if (event.target.className === 'star-icon') {
-    favoriteIdea(event, boxId);;
+    getFavoriteIdeaIndex(event, boxId);
   } else if (event.target.className === 'delete-icon') {
     deleteIdea(boxId);
   }
@@ -107,25 +107,21 @@ function getFavoriteIdeaIndex(event, boxId) {
     return idea.id == boxId.id;
   });
   var favoriteIdea = userIdeas[ideaIndex]
-  starFavIdea (favoriteIdea);
+  delegateSaveIdea (favoriteIdea);
+}
+function delegateSaveIdea(favoriteIdea) {
+  if(favoriteIdea.isStarred){
+    unstarFavIdea(favoriteIdea)
+  } else{
+    starFavIdea(favoriteIdea)
+  }
 }
 function starFavIdea(favoriteIdea) {
   favoriteIdea.isStarred = true;
   event.target.nextSibling.disabled = true;
-  changeIcon(favoriteIdea)
+  event.target.classList.add('is-favorite')
 }
 
-function changeIcon(favoriteIdea, boxId) {
-  if (favoriteIdea.isStarred) {
-  //  favoriteIcon icon is red
-//  boxId some child that's the button.className.add = "is-favorite"
-//  same acess key.style.bakcground-img = "img url"
-
-
-  } else {
-    // favorite Idea icon is white
-  }
-}
 
 
 
