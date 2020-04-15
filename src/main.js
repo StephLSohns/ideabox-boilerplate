@@ -1,10 +1,10 @@
 var menu = document.querySelector('.menu');
 var ideaFormSection = document.querySelector('.idea-form-section');
-var titleInput = document.getElementById('title-input-field');
-var bodyInput = document.getElementById('body-input-field');
 var saveBtn = document.getElementById('save-btn-id');
 var ideaCardsSection = document.querySelector('.idea-cards-section')
 var ideasSection = document.querySelector(".ideas");
+var titleInput = document.getElementById('title-input-field');
+var bodyInput = document.getElementById('body-input-field');
 
 var userIdeas = [];
 var currentIdea;
@@ -14,14 +14,14 @@ ideaFormSection.addEventListener('click', ideaFormButtonHandler);
 ideaFormSection.addEventListener('keyup', enableSaveBtn);
 ideaCardsSection.addEventListener('click', ideaCardsButtonHandler);
 
-
 function showHideMenu() {
   var hamburgerButton = menu.children[0]
   var closeXIcon = menu.children[1]
-  hamburgerButton.classList.toggle('hidden')
-  closeXIcon.classList.toggle('hidden')
-  ideasSection.classList.toggle('faded')
-  ideaFormSection.classList.toggle('faded')
+  if(event.target === hamburgerButton || event.target === closeXIcon){
+    hamburgerButton.classList.toggle('hidden')
+    closeXIcon.classList.toggle('hidden')
+    ideasSection.classList.toggle('faded')
+  }
 }
 
 function enableSaveBtn() {
@@ -33,11 +33,18 @@ function enableSaveBtn() {
 function ideaFormButtonHandler(event) {
   if (event.target.className === "save-idea-btn") {
     createIdea();
-    submitIdeaForm();
+    resetIdeaForm();
   }
 }
 
-function submitIdeaForm() {
+function createIdea() {
+  idea = new Idea (`${titleInput.value}`, `${bodyInput.value}`);
+  userIdeas.push(idea);
+  renderIdea(idea);
+  event.preventDefault();
+}
+
+function resetIdeaForm() {
   if (document.forms[0].submit) {
     document.forms[0].reset();
     saveBtn.disabled = true;
@@ -63,19 +70,11 @@ function renderIdea(currentIdea) {
   ideaCardsSection.insertAdjacentHTML('afterbegin', ideaBox);
 }
 
-function createIdea() {
-  var title = document.forms[0].elements[0].value
-  var body = document.forms[0].elements[1].value
-  idea = new Idea (`${title}`, `${body}`);
-  userIdeas.push(idea);
-  renderIdea(idea);
-  event.preventDefault();
-}
-
 function ideaCardsButtonHandler(event) {
   var chosenIdeaCard = document.getElementById(event.path[2].id)
   if (event.target.className === 'star-icon') {
     getFavoriteIdeaIndex(chosenIdeaCard);
+    updateIdea(currentIdea, chosenIdeaCard);
   } else if (event.target.className === 'delete-icon') {
     deleteIdea(chosenIdeaCard);
   }
@@ -94,27 +93,27 @@ function getFavoriteIdeaIndex(chosenIdeaCard) {
     return idea.id == chosenIdeaCard.id;
   });
   var favoriteIdea = userIdeas[ideaIndex]
-   updateIdea(favoriteIdea, chosenIdeaCard);
+    currentIdea = favoriteIdea;
 }
 
- function updateIdea(favoriteIdea, chosenIdeaCard) {
+function updateIdea(currentIdea, chosenIdeaCard) {
    var starIcon = chosenIdeaCard.children[0].children[0]
    var deleteXIcon = chosenIdeaCard.children[0].children[1]
-   if(favoriteIdea.isStarred) {
-    makeNotFavIdea(favoriteIdea, starIcon, deleteXIcon)
-  } else{
-    makeFavIdea(favoriteIdea, starIcon, deleteXIcon);
+   if(currentIdea.isStarred) {
+    makeNotFavIdea(currentIdea, starIcon, deleteXIcon)
+  } else {
+    makeFavIdea(currentIdea, starIcon, deleteXIcon);
   }
 }
 
-function makeNotFavIdea(favoriteIdea, starIcon, deleteXIcon) {
-  favoriteIdea.isStarred = false;
+function makeNotFavIdea(currentIdea, starIcon, deleteXIcon) {
+  currentIdea.isStarred = false;
   starIcon.style.cssText = "background-image: url(assets/star.svg);"
   deleteXIcon.disabled = false;
 }
 
-function makeFavIdea(favoriteIdea, starIcon, deleteXIcon) {
-  favoriteIdea.isStarred = true;
+function makeFavIdea(currentIdea, starIcon, deleteXIcon) {
+  currentIdea.isStarred = true;
   starIcon.style.cssText = "background-image: url(assets/star-active.svg);"
   deleteXIcon.disabled = true;
 }
