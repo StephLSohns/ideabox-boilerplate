@@ -4,17 +4,5 @@ class Idea {
     this.title = title;
     this.body = body;
     this.isStarred = false;
-  }
-
-  // saveToStorage() {
-  //
-  // }
-  //
-  // deleteFromStorage() {
-  //
-  // }
-  //
-  // updateIdea() {
-  //
-  // }
-}
+  };
+};
