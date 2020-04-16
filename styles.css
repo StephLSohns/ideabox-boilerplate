@@ -41,6 +41,9 @@ body {
 
 .faded {
   opacity: 0.5;
+  background-color: gray;
+
+
 }
 
 #menu-content {
@@ -74,6 +77,8 @@ body {
   flex: 1;
   flex-direction: column;
   font-family:'Open Sans';
+  height: 100vh;
+
 }
 
 .idea-form-section {
@@ -187,10 +192,6 @@ body {
   padding: .1em;
 }
 
-.star-delete-option img {
-  width: 25px;
-}
-
 .star-delete-option button {
   width: 25px;
 }
@@ -213,7 +214,7 @@ body {
   background-image: url(assets/star.svg);
 }
 
-.star-icon .is-favorite {
+.is-favorite {
   background-image: url(assets/star-active.svg);
 }
 
@@ -232,7 +233,6 @@ body {
 
 .idea-box-main-content p {
   grid-row: 3;
-  justify-self: left;
   padding-left: 5px;
 }
 
@@ -310,20 +310,6 @@ body {
     height: 15vh;
     width: 90%;
     margin-bottom: 13px;
-  }
-
-  .hidden {
-    display: none;
-  }
-
-  .header-text {
-    grid-column: 2;
-    font-size: 22px;
-    align-self: center;
-    justify-self: center;
-    height: 5vh;
-    padding: 3px;
-    margin: 8px
   }
 
   .hidden {
