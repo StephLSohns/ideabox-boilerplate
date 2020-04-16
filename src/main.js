@@ -64,7 +64,7 @@ function renderIdea(currentIdea) {
       <p>${currentIdea.body}</p>
     </div>
     <button class="idea-box-add-comment">
-      <h4>Comment</h4>
+      <p>Comment</p>
     </button>
   </section>`;
   ideaCardsSection.insertAdjacentHTML('afterbegin', ideaBox);
@@ -74,6 +74,7 @@ function ideaCardsButtonHandler(event) {
   var chosenIdeaCard = document.getElementById(event.path[2].id)
   if (event.target.className === 'star-icon') {
     getFavoriteIdeaIndex(chosenIdeaCard);
+    updateIdea(currentIdea, chosenIdeaCard);
   } else if (event.target.className === 'delete-icon') {
     deleteIdea(chosenIdeaCard);
   }
@@ -93,27 +94,26 @@ function getFavoriteIdeaIndex(chosenIdeaCard) {
   });
   var favoriteIdea = userIdeas[ideaIndex]
     currentIdea = favoriteIdea;
-
 }
 
-function updateIdea(chosenIdeaCard) {
+function updateIdea(currentIdea, chosenIdeaCard) {
   var starIcon = chosenIdeaCard.children[0].children[0]
   var deleteXIcon = chosenIdeaCard.children[0].children[1]
   if(currentIdea.isStarred) {
-      makeNotFavIdea(currentIdea, starIcon, deleteXIcon) {
+      makeNotFavIdea(currentIdea, starIcon, deleteXIcon) 
     } else {
       makeFavIdea(currentIdea, starIcon, deleteXIcon);
   }
 }
 
-function makeNotFavIdea() {
-
-}
-
-function makeFavIdea(currentIdea, starIcon, deleteXIcon) {
+function makeNotFavIdea(currentIdea, starIcon, deleteXIcon) {
   currentIdea.isStarred = false;
-  starIcon.style.cssText = "background-image: url(assets/star-active.svg);"
+  starIcon.style.cssText = "background-image: url(assets/star.svg);"
   deleteXIcon.disabled = false;
 }
 
+function makeFavIdea(currentIdea, starIcon, deleteXIcon) {
+  currentIdea.isStarred = true;
+  starIcon.style.cssText = "background-image: url(assets/star-active.svg);"
+  deleteXIcon.disabled = true;
 }
